@@ -21,8 +21,7 @@ public class Particle extends DynamicGameObject {
 
     public void update(float deltaTime) {
         velocity.add(accel.x * deltaTime, accel.y * deltaTime);
-        position.add(velocity.x * deltaTime, velocity.y * deltaTime);
-
+        moveBy(velocity.x * deltaTime, velocity.y * deltaTime);
     }
 
 }

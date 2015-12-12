@@ -26,6 +26,9 @@ public class Assets {
     public static TextureRegion negativeFieldRightRegion;
     public static TextureRegion negativeFieldLeftRegion;
 
+    public static Texture obstacle;
+    public static TextureRegion obstacleRegion;
+
 
     public static void load(GLGame game) {
 //        background = new Texture(game, "background.png");
@@ -50,6 +53,10 @@ public class Assets {
 
         items = new Texture(game, "items.png");
         mainMenu = new TextureRegion(items, 0, 224, 300, 110);
+
+
+        obstacle = new Texture(game, "obstacle.png");
+        obstacleRegion = new TextureRegion(obstacle, 0, 0, 512, 128);
 
     }
     public static void reload() {

@@ -28,6 +28,7 @@ public class WorldRenderer {
 
         renderBackground();
         renderMainElectron();
+        renderObstacle();
 
         gl.glDisable(GL10.GL_BLEND);
     }
@@ -63,5 +64,16 @@ public class WorldRenderer {
         Particle main = world.getMainElectron();
         batcher.drawSprite(main.position.x, main.position.y, main.radius, main.radius, Assets.electronRegion);
         batcher.endBatch();
+    }
+
+    private void renderObstacle() {
+        if (world.obstacles.size() > 0) {
+            batcher.beginBatch(Assets.obstacle);
+            for (Obstacle obs :
+                    world.obstacles) {
+                batcher.drawSprite(obs.position.x, obs.position.y, obs.bounds.width(), obs.bounds.height(), Assets.obstacleRegion);
+            }
+            batcher.endBatch();
+        }
     }
 }
