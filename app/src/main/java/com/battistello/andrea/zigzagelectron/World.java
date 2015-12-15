@@ -17,7 +17,7 @@ public class World {
     public static final float MAIN_RADIUS = 20.0f;
     public static final float WORLD_WIDTH = 320;
     public static final float WORLD_HEIGHT = 480;
-    public static final float INITIAL_E_X = 20.0f;        // initial intensity of electric field on x
+    public static final float INITIAL_E_X = 40.0f;        // initial intensity of electric field on x
     public static final float INITIAL_E_Y = 0.0f;          // initial intensity of electric field on y
     public static final float MAX_SCROLL_SPEED_Y = -500.0f;
     public static float SCROLL_SPEED_Y;
@@ -95,8 +95,9 @@ public class World {
 
         // Increase the scrolling speed to a maximum of MAX_SCOLL_SPEED_Y
         SCROLL_SPEED_Y = Math.max(SCROLL_SPEED_Y - 0.1f * deltaTime, MAX_SCROLL_SPEED_Y);
+        E.x = Math.min(E.x + 0.5f * deltaTime, 100.0f);
 
-        Log.d("MYDEBUG", "current_height: " + current_height + " generated_world_max_height: " + generated_world_max_height);
+        Log.d("MYDEBUG", "deltaTime: " + deltaTime + " current_height: " + current_height + " generated_world_max_height: " + generated_world_max_height);
 
     }
 
@@ -115,10 +116,15 @@ public class World {
 
     private void generateObstacles() {
         for (int i = 0; i < 5; i++) {
-            Obstacle obs = new Obstacle(0, generated_world_max_height + 100, 200, 50);
+//            Obstacle obs = new Obstacle(0, generated_world_max_height + 100, 200, 50);
+//            obs.velocity.y = SCROLL_SPEED_Y;
+//            obstacles.add(obs);
+//            generated_world_max_height += 100;
+
+            SimpleHorizontalObstacle obs = new SimpleHorizontalObstacle(generated_world_max_height);
             obs.velocity.y = SCROLL_SPEED_Y;
             obstacles.add(obs);
-            generated_world_max_height += 100;
+            generated_world_max_height += obs.height;
         }
     }
 
