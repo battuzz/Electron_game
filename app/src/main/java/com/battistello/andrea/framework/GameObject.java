@@ -8,7 +8,7 @@ import com.battistello.andrea.framework.math.Vector2;
 public class GameObject {
     public final Vector2 position;
 //    public final Rectangle bounds;
-    public final Shape bounds;
+    public Shape bounds;
 
     /**
      * Creates a game object that represents a generic physical object in the game.
