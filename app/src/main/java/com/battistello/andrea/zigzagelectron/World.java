@@ -122,9 +122,9 @@ public class World {
 //            generated_world_max_height += 100;
 
             SimpleHorizontalObstacle obs = new SimpleHorizontalObstacle(generated_world_max_height);
-            obs.velocity.y = SCROLL_SPEED_Y;
+            obs.setVelocity(0, SCROLL_SPEED_Y);
             obstacles.add(obs);
-            generated_world_max_height += obs.height;
+            generated_world_max_height += obs.getHeight();
         }
     }
 
@@ -153,12 +153,12 @@ public class World {
         Iterator<Obstacle> it = obstacles.iterator();
         while (it.hasNext()) {
             Obstacle ob = it.next();
-            if (ob.position.y < current_height - 200) {
+            if (ob.getPosition().y < current_height - 200) {
                 it.remove();
             }
             else {
                 ob.update(deltaTime);
-                ob.velocity.y = SCROLL_SPEED_Y;
+                ob.setVelocity(0,SCROLL_SPEED_Y);
             }
         }
     }
@@ -173,7 +173,7 @@ public class World {
         // Check collisions with obstacles
         for (Obstacle obs :
                 obstacles) {
-            if (OverlapTester.overlap(obs.bounds, mainElectron.bounds)) {
+            if (obs.collidesWith(mainElectron.bounds)) {
                 state = State.GAME_END;
                 listener.gameEnded();
             }

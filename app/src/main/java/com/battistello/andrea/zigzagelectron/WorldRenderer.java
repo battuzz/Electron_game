@@ -71,7 +71,7 @@ public class WorldRenderer {
             batcher.beginBatch(Assets.obstacle);
             for (Obstacle obs :
                     world.obstacles) {
-                batcher.drawSprite(obs.position.x, obs.position.y, obs.bounds.width(), obs.bounds.height(), Assets.obstacleRegion);
+                obs.render(batcher);
             }
             batcher.endBatch();
         }
