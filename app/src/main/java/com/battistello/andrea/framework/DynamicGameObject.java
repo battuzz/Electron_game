@@ -2,7 +2,7 @@ package com.battistello.andrea.framework;
 
 import com.battistello.andrea.framework.math.Vector2;
 
-public abstract class DynamicGameObject extends GameObject {
+public class DynamicGameObject extends GameObject {
     public Vector2 velocity;
     public final Vector2 accel;
     
@@ -23,5 +23,7 @@ public abstract class DynamicGameObject extends GameObject {
         bounds.moveBy(deltaX, deltaY);
     }
 
-    public abstract void update(float deltaTime);
+    public void update(float deltaTime) {
+        moveBy(velocity.x * deltaTime, velocity.y * deltaTime);
+    }
 }
