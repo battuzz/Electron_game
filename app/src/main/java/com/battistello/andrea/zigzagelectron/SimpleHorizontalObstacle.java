@@ -30,7 +30,7 @@ public class SimpleHorizontalObstacle extends Obstacle {
 //        obstacle = new DynamicGameObject(x, starting_height, width, h);
 //        obstacle.velocity.set(obsVelocity.x, obsVelocity.y);
 
-        height = 150.0f;
+        height = 250.0f;
     }
 
     private void generateRandomObstacles(float starting_height) {

@@ -17,9 +17,9 @@ public class World {
     public static final float MAIN_RADIUS = 20.0f;
     public static final float WORLD_WIDTH = 320;
     public static final float WORLD_HEIGHT = 480;
-    public static final float INITIAL_E_X = 40.0f;        // initial intensity of electric field on x
+    public static final float INITIAL_E_X = -40.0f;        // initial intensity of electric field on x
     public static final float INITIAL_E_Y = 0.0f;          // initial intensity of electric field on y
-    public static final float MAX_SCROLL_SPEED_Y = -500.0f;
+    public static final float MAX_SCROLL_SPEED_Y = -320.0f;
     public static float SCROLL_SPEED_Y;
 
 
@@ -94,11 +94,9 @@ public class World {
         }
 
         // Increase the scrolling speed to a maximum of MAX_SCOLL_SPEED_Y
-        SCROLL_SPEED_Y = Math.max(SCROLL_SPEED_Y - 0.1f * deltaTime, MAX_SCROLL_SPEED_Y);
-        E.x = Math.min(E.x + 0.5f * deltaTime, 100.0f);
-
-        Log.d("MYDEBUG", "deltaTime: " + deltaTime + " current_height: " + current_height + " generated_world_max_height: " + generated_world_max_height);
-
+        SCROLL_SPEED_Y = Math.max(SCROLL_SPEED_Y - deltaTime, MAX_SCROLL_SPEED_Y);
+        E.x = Math.max(E.x - 5.0f * deltaTime, -300.0f);
+        
     }
 
     private void generateWorld() {
@@ -136,10 +134,10 @@ public class World {
 
         float adjFactor = 1.0f;
         if (posX <= mainElectron.interactionRing) {
-            adjFactor = 1.0f + 20.0f * ((mainElectron.interactionRing - posX)*(mainElectron.interactionRing - posX)) / (mainElectron.interactionRing * mainElectron.interactionRing);
+            adjFactor = 1.0f + 5.0f * ((mainElectron.interactionRing - posX)*(mainElectron.interactionRing - posX)) / (mainElectron.interactionRing * mainElectron.interactionRing);
         }
         else if (posX >= WORLD_WIDTH - mainElectron.interactionRing) {
-            adjFactor = 1.0f + 20.0f *  ((mainElectron.interactionRing - WORLD_WIDTH + posX)*(mainElectron.interactionRing - WORLD_WIDTH + posX) / (mainElectron.interactionRing * mainElectron.interactionRing));
+            adjFactor = 1.0f + 5.0f *  ((mainElectron.interactionRing - WORLD_WIDTH + posX)*(mainElectron.interactionRing - WORLD_WIDTH + posX) / (mainElectron.interactionRing * mainElectron.interactionRing));
         }
 
         mainElectron.accel.set(E.x * adjFactor * mainElectron.charge / mainElectron.mass, 0);
