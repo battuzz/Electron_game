@@ -36,9 +36,10 @@ public class World {
 
     Vector2 E;                               // intensity of electric field
     private Particle mainElectron;
-    private ArrayList<Item> items;
     ArrayList<Obstacle> obstacles;
     private WorldListener listener;
+
+    private ObstacleGenerator obs_generator;
 
 
 
@@ -53,6 +54,7 @@ public class World {
         this.listener = listener;
         state = State.GAME_INITIALIZING;
 
+        obs_generator = new ObstacleGenerator(this);
 
 
 
@@ -84,8 +86,6 @@ public class World {
 
         // Update the world
 
-//        current_height = current_height + Math.abs(SCROLL_SPEED_Y)*deltaTime;
-
 
         // Check if we need to add more obstacles in the world
         generated_world_max_height += SCROLL_SPEED_Y * deltaTime;
@@ -96,14 +96,13 @@ public class World {
         // Increase the scrolling speed to a maximum of MAX_SCOLL_SPEED_Y
         SCROLL_SPEED_Y = Math.max(SCROLL_SPEED_Y - deltaTime, MAX_SCROLL_SPEED_Y);
         E.x = Math.max(E.x - 5.0f * deltaTime, -300.0f);
-        
+
     }
 
     private void generateWorld() {
         SCROLL_SPEED_Y = -20.0f;                    // Scrolling speed is downward
         generated_world_max_height = 200;
         current_height = 0;
-        items = new ArrayList<Item>();
         obstacles = new ArrayList<Obstacle>();
         mainElectron = new Particle(WORLD_WIDTH/2, MAIN_OFFSET_Y, MAIN_RADIUS, MAIN_RADIUS);
 
@@ -114,12 +113,8 @@ public class World {
 
     private void generateObstacles() {
         for (int i = 0; i < 5; i++) {
-//            Obstacle obs = new Obstacle(0, generated_world_max_height + 100, 200, 50);
-//            obs.velocity.y = SCROLL_SPEED_Y;
-//            obstacles.add(obs);
-//            generated_world_max_height += 100;
-
-            SimpleHorizontalObstacle obs = new SimpleHorizontalObstacle(generated_world_max_height);
+            Obstacle obs = obs_generator.generate();
+            obs.moveAt(new Vector2(0, generated_world_max_height));
             obs.setVelocity(0, SCROLL_SPEED_Y);
             obstacles.add(obs);
             generated_world_max_height += obs.getHeight();

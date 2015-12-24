@@ -91,33 +91,6 @@ public class GameScreen extends GLScreen {
             batcher.drawSprite(160, 240, 320, 320, Assets.electronRegion);
             batcher.endBatch();
         }
-
-        /*batcher.beginBatch(Assets.background);
-        batcher.drawSprite(160, 240, 320, 480, Assets.backgroundRegion);
-        batcher.endBatch();
-
-        gl.glEnable(GL10.GL_BLEND);
-        gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
-
-        batcher.beginBatch(Assets.background);
-        batcher.drawSprite(0, 0, 160, 160, Assets.backgroundRegion);
-        batcher.endBatch();
-
-        batcher.beginBatch(Assets.electron);
-        batcher.drawSprite(80, 80, 160, 160, Assets.electronRegion);
-        batcher.endBatch();
-
-        batcher.beginBatch(Assets.positiveField);
-        batcher.drawSprite(240, 80, 128, 128, Assets.positiveFieldLeftRegion);
-        batcher.drawSprite(80, 240, 128, 128, Assets.positiveFieldRightRegion);
-        batcher.endBatch();
-
-        batcher.beginBatch(Assets.negativeField);
-        batcher.drawSprite(240, 240, 128, 128, Assets.negativeFieldLeftRegion);
-        batcher.drawSprite(80, 400, 128, 128, Assets.negativeFieldRightRegion);
-        batcher.endBatch();
-
-        gl.glDisable(GL10.GL_BLEND);*/
     }
 
     @Override

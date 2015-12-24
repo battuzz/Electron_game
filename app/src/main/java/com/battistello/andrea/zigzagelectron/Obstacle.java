@@ -24,5 +24,6 @@ public abstract class Obstacle {
     public abstract boolean collidesWith(Shape s);
     public abstract Vector2 getPosition();
     public abstract void render(SpriteBatcher b);
+    public abstract void moveAt(Vector2 newPosition);
 
 }
